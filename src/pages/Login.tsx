@@ -1,21 +1,17 @@
 import React, { useState } from "react";
-import { signup } from "../api/auth";
+import { login } from "../api/auth";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
-export default function Signup() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
-  const navigate = useNavigate()
 
-  const handleSignup = async () => {
+  const handleLogin = async () => {
     try {
-      await signup({ username: email, password });
-      toast.success("Account created successfully");
-      setEmail("");
-      navigate("/login")
-      setPassword("");
+      await login({ username: email, password });
+      toast.success("Login successful");
+      setEmail("")
+      setPassword("")
     } catch (error) {
       console.log(error);
     }
@@ -25,7 +21,7 @@ export default function Signup() {
     <div className="h-screen w-screen flex items-center justify-center flex-col">
       {/* container */}
       <div className="bg-[#dadada] h-fit w-96 flex items-center flex-col py-8 px-2 rounded-lg">
-        <h1 className="uppercase text-center text-3xl">Signup</h1>
+        <h1 className="uppercase text-center text-3xl">Login</h1>
         <form action="" className="w-full p-4">
           <div className="flex flex-col mb-10 gap-2">
             <label htmlFor="email">Email/Username</label>
@@ -52,9 +48,9 @@ export default function Signup() {
       <button
         type="button"
         className="bg-[#dadada] w-96 rounded-lg mt-10 p-4 text-2xl"
-        onClick={handleSignup}
+        onClick={handleLogin}
       >
-        Signup
+        Login
       </button>
     </div>
   );
